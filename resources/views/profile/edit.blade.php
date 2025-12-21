@@ -1,4 +1,5 @@
-<x-app-layout>
+@extends('Admin.mainDashboard')
+@section('content')
     <x-slot name="header">
         <h2 class="h5 mb-0">
             {{ __('Profile') }}
@@ -26,4 +27,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

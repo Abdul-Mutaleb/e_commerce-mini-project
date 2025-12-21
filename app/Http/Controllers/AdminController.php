@@ -101,7 +101,46 @@ class AdminController extends Controller
         return redirect()->route('Admin.addProduct')->with('success', 'Product added successfully!');
     }
 
-    public function productList()
+    public function editProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = DB::table('categores')->get();
+        return view('Admin.editProduct', compact('product', 'categories'));
+    }
+
+    // Update Product
+    public function updateProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'product_name' => 'required|string|max:255',
+            'product_id' => 'required|unique:products,product_id,' . $product->id,
+            'price' => 'required|numeric|min:0',
+            'previous_price' => 'nullable|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'alert_quantity' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categores,id',
+            'images' => 'nullable|array|max:10',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $product->update($request->except('images'));
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $product->addMedia($image)->toMediaCollection('product_images');
+            }
+        }
+
+        return redirect()->route('Admin.productList')->with('success', 'Product updated successfully!');
+    }
+
+     public function productList()
     {
         $products = DB::table('products')
             ->join('categores', 'products.category_id', '=', 'categores.id')
@@ -110,6 +149,7 @@ class AdminController extends Controller
                 'products.product_name',
                 'products.price',
                 'products.quantity',
+                'products.alert_quantity',
                 'categores.category_name'
             )
             ->get();
@@ -126,8 +166,14 @@ class AdminController extends Controller
             ->with('success', 'Product deleted successfully');
     }
 
+    public function deleteProductImage($id)
+    {
+        $media = Media::findOrFail($id);
+        $media->delete();
 
+        return redirect()->back()->with('success', 'Image deleted successfully!');
+    }
 
-
+    
 
 }

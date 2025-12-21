@@ -24,11 +24,12 @@
             <table class="table table-bordered table-striped align-middle">
                 <thead class="table-dark">
                     <tr>
+                        <th>Category Name</th>
+                        <th>Product Name</th>
                         <th>Image</th>
-                        <th>Product</th>
-                        <th>Category</th>
                         <th>Price</th>
-                        <th>Qty</th>
+                        <th>Quantity</th>
+                        <th>Alert Quantity</th>
                         <th width="120">Action</th>
                     </tr>
                 </thead>
@@ -39,6 +40,8 @@
                             $product = \App\Models\Product::find($item->id);
                         @endphp
                         <tr>
+                            <td>{{ $item->category_name }}</td>
+                            <td>{{ $item->product_name }}</td>
                             <td>
                                 @if($product && $product->getMedia('product_images')->count())
                                     <div class="d-flex flex-wrap gap-1">
@@ -51,12 +54,9 @@
                                     <span class="text-muted">No Image</span>
                                 @endif
                             </td>
-
-                            <td>{{ $item->product_name }}</td>
-                            <td>{{ $item->category_name }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->quantity }}</td>
-
+                            <td>{{ $item->alert_quantity }}</td>
                             <td>
                                 <div class="d-flex gap-2">
                                     <a href="{{ route('Admin.editProduct', $item->id) }}" class="btn btn-sm btn-warning">

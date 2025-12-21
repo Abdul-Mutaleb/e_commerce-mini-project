@@ -1,7 +1,6 @@
 @extends("Admin.mainDashboard")
 
 @section('content')
-
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -16,15 +15,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-lg border-0 rounded-4">
-
-                    {{-- Card Header --}}
                     <div class="card-header bg-primary text-white text-center rounded-top-4">
                         <h4 class="mb-0">
                             <i class="fa fa-box me-2"></i> Add New Product
                         </h4>
                     </div>
-
-                    {{-- Card Body --}}
                     <div class="card-body p-4">
                         <form action="{{ route('Admin.addProduct') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -42,7 +37,6 @@
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {{-- Product Name --}}
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">
                                     Product Name <span class="text-danger">*</span>
@@ -53,8 +47,6 @@
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                            {{-- SKU --}}
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">
                                     Product SKU <span class="text-danger">*</span>
@@ -67,7 +59,6 @@
                             </div>
 
                             <div class="row">
-                                {{-- Price --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-semibold">
                                         Current Price <span class="text-danger">*</span>
@@ -79,7 +70,6 @@
                                     @enderror
                                 </div>
 
-                                {{-- Previous Price --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-semibold">
                                         Previous Price
@@ -90,7 +80,7 @@
                             </div>
 
                             <div class="row">
-                                {{-- Quantity --}}
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-semibold">
                                         Quantity <span class="text-danger">*</span>
@@ -102,7 +92,6 @@
                                     @enderror
                                 </div>
 
-                                {{-- Alert Quantity --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-semibold">
                                         Alert Quantity <span class="text-danger">*</span>
@@ -114,8 +103,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            {{-- Product Images --}}
                             <div class="mb-4">
                                 <label class="form-label fw-semibold">Product Images <span
                                         class="text-danger">*</span></label>
@@ -124,17 +111,14 @@
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                            {{-- Submit Button --}}
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-success btn-lg">
-                                    <i class="fa fa-save me-1"></i> Add Product
+                                    <i class="fa fa-plus-circle me-1"></i> Add Product
                                 </button>
                             </div>
                         </form>
                     </div>
 
-                    {{-- Card Footer --}}
                     <div class="card-footer text-center text-muted">
                         <small>Ensure all required product information is correct</small>
                     </div>
