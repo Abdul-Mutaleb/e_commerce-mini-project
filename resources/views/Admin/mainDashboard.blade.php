@@ -48,10 +48,30 @@
                         </ul>
                     </div>
                 </li>
+
+                <!-- Product  -->
                 <li class="nav-item">
-                    <a href="{{ route('Admin.product') }}" @class(['nav-link', 'active' => request()->routeIs('Admin.product'), 'text-secondary'])>
-                        <i class="fas fa-home"></i>Product
+                    <a class="nav-link text-secondary d-flex justify-content-between align-items-center"
+                        data-bs-toggle="collapse" href="#productMenu">
+                        <span><i class="fas fa-box"></i> Product</span>
+                        <i class="fas fa-chevron-down small"></i>
                     </a>
+
+                    <div class="collapse {{ request()->routeIs('Admin.addProduct*') || request()->routeIs('Admin.productList*') ? 'show' : '' }}"
+                        id="productMenu">
+                        <ul class="nav flex-column ms-3">
+                            <li class="nav-item">
+                                <a href="{{ route('Admin.addProduct') }}" @class(['nav-link', 'active' => request()->routeIs('Admin.addProduct'), 'text-secondary'])>
+                                    <i class="fas fa-plus"></i> Add Product
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('Admin.productList') }}" @class(['nav-link', 'active' => request()->routeIs('Admin.productList'), 'text-secondary'])>
+                                    <i class="fas fa-list-ul"></i> Product List
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </nav>
