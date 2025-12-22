@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->decimal('previous_price', 10, 2)->nullable();
             $table->integer('quantity');
             $table->integer('alert_quantity');
-            $table->foreignId('category_id')->constrained('categores')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

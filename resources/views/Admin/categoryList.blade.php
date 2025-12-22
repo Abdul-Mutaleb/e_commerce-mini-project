@@ -12,11 +12,11 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
             <h3>All Categories</h3>
-            <a href="{{ route('Admin.category') }}" class="btn btn-primary">Add New Category</a>
+            <a href="{{ route('Admin.addCategory') }}" class="btn btn-primary">Add New Category</a>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
-                <thead>
+                <thead class="table-dark text-white">
                     <tr>
                         <th>ID</th>
                         <th>Category Name</th>

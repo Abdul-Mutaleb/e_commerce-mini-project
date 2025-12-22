@@ -22,7 +22,7 @@
                         </h4>
                     </div>
                     <div class="card-body p-4">
-                        <form action="{{ route("Admin.category") }}" method="POST">
+                        <form action="{{ route("Admin.addCategory") }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">

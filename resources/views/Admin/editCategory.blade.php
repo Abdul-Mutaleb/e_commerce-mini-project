@@ -32,7 +32,7 @@
                                 </label>
 
                                 <input type="text" name="category_name" id="category_name" class="form-control form-control-lg"
-                                    placeholder="Enter category name" required>
+                                    placeholder="Enter category name" value="{{ old('category_name', $category->category_name) }}" required>
                             </div>
 
                             @error('category_name')

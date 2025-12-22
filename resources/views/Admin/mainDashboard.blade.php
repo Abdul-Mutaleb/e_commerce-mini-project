@@ -33,10 +33,10 @@
                         <i class="fas fa-chevron-down small"></i>
                     </a>
 
-                    <div class="collapse {{ request()->routeIs('Admin.category*') ? 'show' : '' }}" id="categoryMenu">
+                    <div class="collapse {{ request()->routeIs('Admin.addCategory*') ? 'show' : '' }}" id="categoryMenu">
                         <ul class="nav flex-column ms-3">
                             <li class="nav-item">
-                                <a href="{{ route('Admin.category') }}" @class(['nav-link', 'active' => request()->routeIs('Admin.category'), 'text-secondary'])>
+                                <a href="{{ route('Admin.addCategory') }}" @class(['nav-link', 'active' => request()->routeIs('Admin.addCategory'), 'text-secondary'])>
                                     <i class="fas fa-plus"></i> Add Category
                                 </a>
                             </li>

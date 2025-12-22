@@ -11,7 +11,7 @@ class AdminController extends Controller
     // Category view section 
     public function category()
     {
-        return view("Admin.category");
+        return view("Admin.addCategory");
     }
     // Category added
     public function addCategory(Request $request)
@@ -20,7 +20,7 @@ class AdminController extends Controller
             "category_name" => ['required', 'string'],
         ]);
 
-        $category = DB::table("categores")->insert([
+        $category = DB::table("categories")->insert([
             "category_name" => $request->category_name,
             "created_at" => now(),
             "updated_at" => now(),
@@ -31,14 +31,14 @@ class AdminController extends Controller
 
     public function categoryList()
     {
-        $categoryList = DB::table("categores")->get();
+        $categoryList = DB::table("categories")->get();
         return view("Admin.categoryList", compact('categoryList'));
     }
 
     // Category edit section 
     public function editCategory($id)
     {
-        $category = DB::table("categores")->where('id', $id)->first();
+        $category = DB::table("categories")->where('id', $id)->first();
         return view("Admin.editCategory", compact("category"));
     }
     // Category update  
@@ -48,7 +48,7 @@ class AdminController extends Controller
             "category_name" => ["required", "string"],
         ]);
 
-        DB::table("categores")
+        DB::table("categories")
             ->where("id", $id)
             ->update([
                 "category_name" => $request->category_name,
@@ -61,8 +61,8 @@ class AdminController extends Controller
     // Category delete 
     public function deleteCategory($id)
     {
-        $room = DB::table('categores')->where('id', $id)->first();
-        DB::table('categores')->where('id', $id)->delete();
+        $room = DB::table('categories')->where('id', $id)->first();
+        DB::table('categories')->where('id', $id)->delete();
 
         return redirect()->route('Admin.categoryList')->with('success', 'Category deleted successfully!');
     }
@@ -70,7 +70,7 @@ class AdminController extends Controller
     // Product view section 
     public function product()
     {
-        $categories = DB::table('categores')->get();
+        $categories = DB::table('categories')->get();
 
         return view('Admin.addProduct', compact('categories'));
     }
@@ -84,7 +84,7 @@ class AdminController extends Controller
             'previous_price' => 'nullable|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'alert_quantity' => 'required|integer|min:0',
-            'category_id' => 'required|exists:categores,id',
+            'category_id' => 'required|exists:categories,id',
             'images' => 'required|array|max:10',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -104,7 +104,7 @@ class AdminController extends Controller
     public function editProduct($id)
     {
         $product = Product::findOrFail($id);
-        $categories = DB::table('categores')->get();
+        $categories = DB::table('categories')->get();
         return view('Admin.editProduct', compact('product', 'categories'));
     }
 
@@ -120,7 +120,7 @@ class AdminController extends Controller
             'previous_price' => 'nullable|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'alert_quantity' => 'required|integer|min:0',
-            'category_id' => 'required|exists:categores,id',
+            'category_id' => 'required|exists:categories,id',
             'images' => 'nullable|array|max:10',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -143,14 +143,14 @@ class AdminController extends Controller
      public function productList()
     {
         $products = DB::table('products')
-            ->join('categores', 'products.category_id', '=', 'categores.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select(
                 'products.id',
                 'products.product_name',
                 'products.price',
                 'products.quantity',
                 'products.alert_quantity',
-                'categores.category_name'
+                'categories.category_name'
             )
             ->get();
 

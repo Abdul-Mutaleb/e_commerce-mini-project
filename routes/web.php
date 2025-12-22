@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminController, ProfileController, UserController};
+use App\Http\Controllers\{AdminController, HomeController, ProfileController, UserController};
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -20,12 +20,12 @@ require __DIR__ . '/auth.php';
 //Admin controller 
 
 // category get route 
-Route::get('/Admin/category', [AdminController::class, 'category'])->middleware(['auth', 'verified'])->name('Admin.category');
+Route::get('/Admin/addCategory', [AdminController::class, 'category'])->middleware(['auth', 'verified'])->name('Admin.addCategory');
 Route::get('/Admin/categoryList', [AdminController::class, 'categoryList'])->middleware(['auth', 'verified'])->name('Admin.categoryList');
 Route::get('/Admin/editCategory/{id}', [AdminController::class, 'editCategory'])->middleware(['auth', 'verified'])->name('Admin.editCategory');
 
 // category post & put route 
-Route::post('/Admin/category', [AdminController::class, 'addCategory'])->middleware(['auth', 'verified'])->name('Admin.category');
+Route::post('/Admin/addCategory', [AdminController::class, 'addCategory'])->middleware(['auth', 'verified'])->name('Admin.addCategory');
 Route::put('/Admin/updateCategory/{id}', [AdminController::class, 'updateCategory'])->middleware(['auth', 'verified'])->name('Admin.updateCategory');
 
 // category delete route 
