@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{AdminController, HomeController, ProfileController, UserController};
 
@@ -40,14 +39,9 @@ Route::get('/Admin/editProduct/{id}', [AdminController::class, 'editProduct'])->
 
 // product post & put route
 Route::post('/Admin/addProduct', [AdminController::class, 'addProduct'])->middleware(['auth', 'verified'])->name('Admin.addProduct');
-Route::put('/Admin/updateProduct/{id}',[AdminController::class,'updateProduct'])
+Route::put('/Admin/updateProduct/{id}', [AdminController::class, 'updateProduct'])
     ->name('Admin.updateProduct');
 
 //product delete route 
-Route::delete('/deleteProduct/{id}', [AdminController::class, 'deleteProduct'])
-    ->middleware(['auth', 'verified'])
-    ->name('Admin.deleteProduct');
-Route::delete('/Admin/deleteProductImage/{id}', [AdminController::class,'deleteProductImage'])
-    ->middleware(['auth', 'verified'])
-    ->name('Admin.deleteProductImage');
-
+Route::delete('/deleteProduct/{id}', [AdminController::class, 'deleteProduct'])->middleware(['auth', 'verified'])->name('Admin.deleteProduct');
+Route::delete('/Admin/deleteProductImage/{id}', [AdminController::class, 'deleteProductImage'])->middleware(['auth', 'verified'])->name('Admin.deleteProductImage');

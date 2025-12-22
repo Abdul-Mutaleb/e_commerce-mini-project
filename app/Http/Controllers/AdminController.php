@@ -27,8 +27,8 @@ class AdminController extends Controller
         ]);
         return redirect()->route("Admin.categoryList")->with("success", "Successfully added Category");
     }
-    // Category show 
 
+    // Category show 
     public function categoryList()
     {
         $categoryList = DB::table("categories")->get();
@@ -74,7 +74,7 @@ class AdminController extends Controller
 
         return view('Admin.addProduct', compact('categories'));
     }
-
+    // Product added section
     public function addProduct(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -86,7 +86,7 @@ class AdminController extends Controller
             'alert_quantity' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'images' => 'required|array|max:10',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:40960',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -100,7 +100,7 @@ class AdminController extends Controller
 
         return redirect()->route('Admin.addProduct')->with('success', 'Product added successfully!');
     }
-
+    // Product edit section
     public function editProduct($id)
     {
         $product = Product::findOrFail($id);
@@ -108,7 +108,7 @@ class AdminController extends Controller
         return view('Admin.editProduct', compact('product', 'categories'));
     }
 
-    // Update Product
+    //  // Product Update section
     public function updateProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
@@ -139,8 +139,8 @@ class AdminController extends Controller
 
         return redirect()->route('Admin.productList')->with('success', 'Product updated successfully!');
     }
-
-     public function productList()
+    // Product show section
+    public function productList()
     {
         $products = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
@@ -156,7 +156,7 @@ class AdminController extends Controller
 
         return view('Admin.productList', compact('products'));
     }
-
+    // Product delete section
     public function deleteProduct($id)
     {
         $product = Product::findOrFail($id);
@@ -165,7 +165,7 @@ class AdminController extends Controller
         return redirect()->route('Admin.productList')
             ->with('success', 'Product deleted successfully');
     }
-
+    // Product delete image section
     public function deleteProductImage($id)
     {
         $media = Media::findOrFail($id);
@@ -173,7 +173,5 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Image deleted successfully!');
     }
-
-    
 
 }

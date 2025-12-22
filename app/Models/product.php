@@ -7,7 +7,7 @@ use Spatie\MediaLibrary\{HasMedia, InteractsWithMedia};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class product extends Model implements HasMedia
+class Product extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
     protected $fillable = [

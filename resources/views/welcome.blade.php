@@ -45,7 +45,7 @@
       <div class="row align-items-center">
 
         <div class="col-lg-2 text-center text-lg-start">
-          <div class="logo">Safira</div>
+          <div class="logo">E-Commerce</div>
         </div>
 
         <div class="col-lg-6">
@@ -69,27 +69,25 @@
   </div>
   <nav class="navbar navbar-expand-lg main-nav">
     <div class="container align-items-end">
-      <!-- CATEGORY BUTTON WITH DROPDOWN -->
       <div class="dropdown me-4">
         <button class="btn category-btn dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown"
           aria-expanded="false">
           <i class="bi bi-list"></i> All Categories
         </button>
         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-          @foreach($categories as $category)
+          @foreach($categoryList as $category)
             <li><a class="dropdown-item"
-                href="" > </a></li>
+                href="{{ route('Admin.categoryList') }}?category={{ $category->id }}">{{ $category->category_name }}</a>
+            </li>
           @endforeach
         </ul>
       </div>
-
-
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="mainMenu">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav gap-3">
           <li class="nav-item"><a class="nav-link" href="">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="">Shop</a></li>
           <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
@@ -113,13 +111,16 @@
       <div class="row">
         @foreach($products as $product)
           <div class="col-12 col-sm-6 col-lg-3 mb-4">
-            <div class="card h-100">
+            <div class="card h-100 d-flex flex-column">
+
+              <!-- Product Images -->
               @if($product->getMedia('product_images')->isNotEmpty())
                 <div id="carousel-{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner">
                     @foreach($product->getMedia('product_images') as $key => $image)
                       <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <img src="{{ $image->getUrl() }}" class="d-block w-100" alt="{{ $product->product_name }}">
+                        <img src="{{ $image->getUrl() }}" class="d-block w-100 product-img"
+                          alt="{{ $product->product_name }}">
                       </div>
                     @endforeach
                   </div>
@@ -135,20 +136,26 @@
                   </button>
                 </div>
               @else
-                <img src="https://via.placeholder.com/300x200" alt="No Image">
+                <img src="https://via.placeholder.com/300x200" alt="No Image" class="product-img">
               @endif
+
+              <!-- Card Body -->
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ $product->product_name }}</h5>
-                <p class="card-text">
+
+                <!-- Price Block -->
+                <div class="price-block mb-2">
                   <span class="current-price fw-bold text-danger">${{ $product->price }}</span>
                   @if($product->previous_price)
                     <span
                       class="previous-price text-muted text-decoration-line-through">${{ $product->previous_price }}</span>
                   @endif
-                </p>
-                <p class="mt-auto">{{ $categories[$product->id]->category_name ?? 'Uncategorized' }}</p>
+                </div>
+
+                <p class="mt-auto category-text">{{ $categories[$product->id]->category_name ?? 'Uncategorized' }}</p>
               </div>
 
+              <!-- Add to Cart Button -->
               <div class="d-flex justify-content-center m-3">
                 <a href="#" class="btn btn-primary rounded-pill px-5">
                   <i class="bi bi-cart-plus me-1"></i> Add to Cart
@@ -160,6 +167,68 @@
       </div>
     </div>
   </main>
+
+  <footer class="bg-dark text-light pt-5 pb-4">
+    <div class="container">
+      <div class="row">
+
+        <!-- About / Logo -->
+        <div class="col-12 col-md-3 mb-4">
+          <h5 class="text-uppercase mb-3">MyShop</h5>
+          <p>Your one-stop shop for all products. Quality items at best prices.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-6 col-md-2 mb-4">
+          <h6 class="text-uppercase mb-3">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-light text-decoration-none">Home</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Shop</a></li>
+            <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Service -->
+        <div class="col-6 col-md-3 mb-4">
+          <h6 class="text-uppercase mb-3">Customer Service</h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Returns</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Shipping</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-12 col-md-4 mb-4">
+          <h6 class="text-uppercase mb-3">Contact Us</h6>
+          <p><i class="bi bi-geo-alt-fill me-2"></i>123 Main Street, Dhaka, Bangladesh</p>
+          <p><i class="bi bi-telephone-fill me-2"></i>+880 XXXXXXXXX</p>
+          <p><i class="bi bi-envelope-fill me-2"></i>support@myshop.com</p>
+
+          <!-- Social Media -->
+          <div class="mt-3">
+            <a href="#" class="text-light me-3"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-twitter fs-5"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" class="text-light"><i class="bi bi-youtube fs-5"></i></a>
+          </div>
+        </div>
+
+      </div>
+      <hr class="mt-4 mb-3 border-light">
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="mb-0">&copy; 2025 E-Commerce. All rights reserved.</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

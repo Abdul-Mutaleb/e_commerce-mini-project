@@ -10,12 +10,12 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::with('media')->get();
-        
+        $categoryList = DB::table('categories')->get();
         $categories = DB::table('products')
             ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.id', 'categories.category_name')
             ->get()
             ->keyBy('id');
-        return view('welcome', compact('products',  'categories'));
+        return view('welcome', compact('products',  'categories', 'categoryList'));
     }
 }
