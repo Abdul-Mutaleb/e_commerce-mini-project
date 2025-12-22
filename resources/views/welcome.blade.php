@@ -154,7 +154,7 @@
               </div>
 
               <div class="d-flex justify-content-center m-3">
-                <a href="#" class="btn btn-primary rounded-pill px-5">
+                <a href="#" class="btn btn-success rounded-pill px-5">
                   <i class="bi bi-cart-plus me-1"></i> Add to Cart
                 </a>
               </div>
