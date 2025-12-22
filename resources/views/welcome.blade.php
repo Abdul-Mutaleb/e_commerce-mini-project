@@ -76,8 +76,11 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
           @foreach($categoryList as $category)
-            <li><a class="dropdown-item"
-                href="{{ route('Admin.categoryList') }}?category={{ $category->id }}">{{ $category->category_name }}</a>
+            <li>
+              <select class="form-control" name="" id="">
+                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+              </select>
+          
             </li>
           @endforeach
         </ul>
@@ -108,9 +111,11 @@
   <main class="py-4">
     <div class="container">
       <h1 class="text-center m-3">New Products</h1>
+
+
       <div class="row">
         @foreach($products as $product)
-          <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
             <div class="card h-100 d-flex flex-column">
 
               <!-- Product Images -->
