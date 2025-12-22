@@ -139,11 +139,9 @@
                 <img src="https://via.placeholder.com/300x200" alt="No Image" class="product-img">
               @endif
 
-              <!-- Card Body -->
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ $product->product_name }}</h5>
 
-                <!-- Price Block -->
                 <div class="price-block mb-2">
                   <span class="current-price fw-bold text-danger">${{ $product->price }}</span>
                   @if($product->previous_price)
@@ -155,7 +153,6 @@
                 <p class="mt-auto category-text">{{ $categories[$product->id]->category_name ?? 'Uncategorized' }}</p>
               </div>
 
-              <!-- Add to Cart Button -->
               <div class="d-flex justify-content-center m-3">
                 <a href="#" class="btn btn-primary rounded-pill px-5">
                   <i class="bi bi-cart-plus me-1"></i> Add to Cart
@@ -172,13 +169,11 @@
     <div class="container">
       <div class="row">
 
-        <!-- About / Logo -->
         <div class="col-12 col-md-3 mb-4">
           <h5 class="text-uppercase mb-3">MyShop</h5>
           <p>Your one-stop shop for all products. Quality items at best prices.</p>
         </div>
 
-        <!-- Quick Links -->
         <div class="col-6 col-md-2 mb-4">
           <h6 class="text-uppercase mb-3">Quick Links</h6>
           <ul class="list-unstyled">
@@ -188,8 +183,6 @@
             <li><a href="#" class="text-light text-decoration-none">Contact</a></li>
           </ul>
         </div>
-
-        <!-- Customer Service -->
         <div class="col-6 col-md-3 mb-4">
           <h6 class="text-uppercase mb-3">Customer Service</h6>
           <ul class="list-unstyled">
@@ -199,15 +192,11 @@
             <li><a href="#" class="text-light text-decoration-none">Terms & Conditions</a></li>
           </ul>
         </div>
-
-        <!-- Contact Info -->
         <div class="col-12 col-md-4 mb-4">
           <h6 class="text-uppercase mb-3">Contact Us</h6>
           <p><i class="bi bi-geo-alt-fill me-2"></i>123 Main Street, Dhaka, Bangladesh</p>
           <p><i class="bi bi-telephone-fill me-2"></i>+880 XXXXXXXXX</p>
           <p><i class="bi bi-envelope-fill me-2"></i>support@myshop.com</p>
-
-          <!-- Social Media -->
           <div class="mt-3">
             <a href="#" class="text-light me-3"><i class="bi bi-facebook fs-5"></i></a>
             <a href="#" class="text-light me-3"><i class="bi bi-twitter fs-5"></i></a>
