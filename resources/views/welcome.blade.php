@@ -80,7 +80,7 @@
               <select class="form-control" name="" id="">
                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
               </select>
-          
+
             </li>
           @endforeach
         </ul>
@@ -143,19 +143,19 @@
               @else
                 <img src="https://via.placeholder.com/300x200" alt="No Image" class="product-img">
               @endif
-
+              <p class="category-text  m-3">
+                {{ $categories[$product->id]->category_name ?? 'Uncategorized' }}
+              </p>
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ $product->product_name }}</h5>
 
                 <div class="price-block mb-2">
-                  <span class="current-price fw-bold text-danger">${{ $product->price }}</span>
+                  <span class="current-price fw-bold text-danger">{{ $product->price }} TK</span>
                   @if($product->previous_price)
-                    <span
-                      class="previous-price text-muted text-decoration-line-through">${{ $product->previous_price }}</span>
+                    <span class="previous-price text-muted text-decoration-line-through">{{ $product->previous_price }}
+                      TK</span>
                   @endif
                 </div>
-
-                <p class="mt-auto category-text">{{ $categories[$product->id]->category_name ?? 'Uncategorized' }}</p>
               </div>
 
               <div class="d-flex justify-content-center m-3">

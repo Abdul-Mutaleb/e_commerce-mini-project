@@ -98,7 +98,7 @@ class AdminController extends Controller
             $product->addMedia($image)->toMediaCollection('product_images');
         }
 
-        return redirect()->route('Admin.addProduct')->with('success', 'Product added successfully!');
+        return redirect()->route('Admin.productList')->with('success', 'Product added successfully!');
     }
     // Product edit section
     public function editProduct($id)
@@ -122,7 +122,7 @@ class AdminController extends Controller
             'alert_quantity' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'images' => 'nullable|array|max:10',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:40960',
         ]);
 
         if ($validator->fails()) {
@@ -147,6 +147,7 @@ class AdminController extends Controller
             ->select(
                 'products.id',
                 'products.product_name',
+                'products.product_id',
                 'products.price',
                 'products.quantity',
                 'products.alert_quantity',

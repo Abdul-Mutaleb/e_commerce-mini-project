@@ -26,6 +26,7 @@
                     <tr>
                         <th>Category Name</th>
                         <th>Product Name</th>
+                        <th>Stock Keeping Unit(SKU)</th>
                         <th>Image</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -42,6 +43,7 @@
                         <tr>
                             <td>{{ $item->category_name }}</td>
                             <td>{{ $item->product_name }}</td>
+                            <td>{{ $item->product_id }}</td>
                             <td>
                                 @if($product && $product->getMedia('product_images')->count())
                                     <div class="d-flex flex-wrap gap-1">
@@ -54,6 +56,7 @@
                                     <span class="text-muted">No Image</span>
                                 @endif
                             </td>
+                            
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->alert_quantity }}</td>
