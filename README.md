@@ -41,6 +41,18 @@ npm -v
 ```bash
     npm install
 ```
+=> spatie media library install
+
+```bash
+    composer require "spatie/laravel-medialibrary"
+```
+```bash
+    php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="medialibrary-  migrations"
+```
+```bash
+   php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="medialibrary-config" 
+```
+
 ```bash
     php artisan storage:link
 ```
