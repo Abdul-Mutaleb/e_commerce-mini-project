@@ -65,11 +65,26 @@ npm -v
      php artisan key:generate
     ```
 5. **Run Database Migrations:**
-
+   go to mysql server abd ceate new database
+   ```
+    e_commerce_mini_project
+    ```
+   .env file set up
+   ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=e_commerce_mini_project
+    DB_USERNAME=root
+    DB_PASSWORD=
+   ```
+   ```bash
+     php artisan migrate 
+    ```
     ```bash
      php artisan migrate --seed
     ```
-6. **Start the Development Server:**
+8. **Start the Development Server:**
 
     ```bash
      composer run dev 
