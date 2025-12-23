@@ -66,7 +66,7 @@ npm -v
     ```
 5. **Run Database Migrations:**
 
-   go to mysql server abd ceate new database
+   go to mysql server and ceate new database
    ```
     e_commerce_mini_project
     ```
