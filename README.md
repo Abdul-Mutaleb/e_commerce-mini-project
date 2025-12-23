@@ -22,15 +22,16 @@ node -v
 npm -v
 ```
 1. **Clone the Repository:**
-2. 
-     ```bash
+   
+   ```bash
      composer global require laravel/installer
+    ```
     ```bash
     git clone https://github.com/Abdul-Mutaleb/e_commerce-mini-project.git
     ```
     ```bash
     cd e_commerce-mini-project
-
+     ```
 3. **Install Dependencies:**
 
 
