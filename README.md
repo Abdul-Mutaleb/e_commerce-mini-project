@@ -65,6 +65,7 @@ npm -v
      php artisan key:generate
     ```
 5. **Run Database Migrations:**
+
    go to mysql server abd ceate new database
    ```
     e_commerce_mini_project
