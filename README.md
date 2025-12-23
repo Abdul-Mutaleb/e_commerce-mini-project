@@ -21,29 +21,66 @@ composer -V
 node -v
 npm -v
 ```
+1. **Clone the Repository:**
+     ```bash
+composer global require laravel/installer
+    ```bash
+    git clone https://github.com/Abdul-Mutaleb/e_commerce-mini-project.git
+    ```
+    ```bash
+    cd e_commerce-mini-project
 
-### Installation
+2. **Install Dependencies:**
+
+
 ```bash
-git clone https://github.com/Abdul-Mutaleb/e_commerce-mini-project.git
-cd e_commerce-mini-project
-composer install
-npm install
-npm run dev
-cp .env.example .env
-php artisan key:generate
+    composer install
+```
+```bash
+    npm install
+```
+```bash
+    php artisan storage:link
+```
 
 
+3. **Environment Configuration:**
 
+    - Using Command Prompt (CMD):
+
+    ```cmd
+    copy .env.example .env
+    ```
+
+    - Using Git Bash:
+
+    ```bash
+    cp .env.example .env
+    ```
+4. **Generate Application Key:**
+
+    ```bash
+     php artisan key:generate
+    ```
+5. **Run Database Migrations:**
+
+    ```bash
+     php artisan migrate --seed
+    ```
+6. **Start the Development Server:**
+
+    ```bash
+     composer run dev 
+    ```
+
+&nbsp;
 ## 👤 Admin Login Information
 
 * Admin account is created using **database seeder**
 * Seeder file is included in the project
-
-Run seeder if needed:
-
-```bash
-php artisan db:seed
-```
+ Admin Login 
+ email: admin@gmail.com
+ password: 12345678
 
 > Admin credentials can be found inside the seeder file.
 
